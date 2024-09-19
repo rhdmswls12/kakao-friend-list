@@ -1,18 +1,33 @@
-import { Platform, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import Header from "./src/Header";
 import {
   getStatusBarHeight,
   getBottomSpace,
 } from "react-native-iphone-x-helper";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import MyProfile from "./src/MyProfile";
+import { myProfile } from "./src/data";
+import Margin from "./src/Margin";
 
 const statusBarHeight = getStatusBarHeight(true);
 const bottomSpace = getBottomSpace();
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    // <SafeAreaProvider>
+    //   <SafeAreaView style={styles.container} edges={["right", "left"]}>
+    //     <Header />
+    //   </SafeAreaView>
+    // </SafeAreaProvider>
+    <View style={styles.container}>
       <Header />
-    </SafeAreaView>
+      <Margin height={10} />
+      <MyProfile
+        uri={myProfile.uri}
+        name={myProfile.name}
+        introduction={myProfile.introduction}
+      />
+    </View>
   );
 }
 
